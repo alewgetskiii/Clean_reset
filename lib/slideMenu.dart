@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'test_db.dart';
 
 
 class SlideMenuPage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _SlideMenuPageState extends State<SlideMenuPage>
   void navigateToAnotherPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AnotherPage()),
+      MaterialPageRoute(builder: (context) => MissionListPage()),
     );
   }
 

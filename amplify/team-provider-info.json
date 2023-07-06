@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cleanreset-staging-124950-authRole",
+      "UnauthRoleArn": "arn:aws:iam::723307951615:role/amplify-cleanreset-staging-124950-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::723307951615:role/amplify-cleanreset-staging-124950-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-cleanreset-staging-124950-deployment",
+      "UnauthRoleName": "amplify-cleanreset-staging-124950-unauthRole",
+      "StackName": "amplify-cleanreset-staging-124950",
+      "StackId": "arn:aws:cloudformation:eu-west-3:723307951615:stack/amplify-cleanreset-staging-124950/6e85eed0-1b32-11ee-ba10-0a8eb17066de",
+      "AmplifyAppId": "d3jtcq08g7v08o"
+    }
+  }
+}

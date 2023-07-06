@@ -5,19 +5,19 @@ import 'dart:convert';
 
 import 'amplifyconfiguration.dart';
 
-class MyApp extends StatefulWidget {
+class MissionListPage extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  List<String> missionNames = []; // Liste des noms de mission
+class _MyAppState extends State<MissionListPage> {
+  List<String> missionNames = [];// Liste des noms de mission
 
   @override
   void initState() {
+    fetchData;
     super.initState();
     configureAmplify();
-    fetchData();
   }
 
   void configureAmplify() async {
@@ -28,45 +28,6 @@ class _MyAppState extends State<MyApp> {
       print('An error occurred during Amplify configuration: $e');
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('AppSync Demo'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                child: Text('Query'),
-                onPressed: fetchData,
-              ),
-              SizedBox(height: 20),
-              Text('Mission Names:'),
-              SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: missionNames.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(missionNames[index]),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-
 
   Future<void> fetchData() async {
     try {
@@ -100,8 +61,50 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    fetchData();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('AppSync Demo'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 20),
+              Text('Mission Names:'),
+              SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: missionNames.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        leading: FlutterLogo(size: 56.0),
+                        title: Text(missionNames[index]),
+                        subtitle: Text('Here is a second line'),
+                        trailing: Icon(Icons.more_vert),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+
+
+
 }
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MissionListPage());
 }
