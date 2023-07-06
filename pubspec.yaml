@@ -34,9 +34,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  amplify_authenticator: ^1.0.0
   amplify_flutter: ^1.0.0
   amplify_auth_cognito: ^1.0.0
+
 
 
 
