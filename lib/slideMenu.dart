@@ -1,3 +1,4 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'test_db.dart';
 
@@ -31,6 +32,15 @@ class _SlideMenuPageState extends State<SlideMenuPage>
       context,
       MaterialPageRoute(builder: (context) => MissionListPage()),
     );
+  }
+
+  void logout() async {
+    try {
+      await Amplify.Auth.signOut();
+      print('Logout successful');
+    } catch (e) {
+      print('An error occurred during logout: $e');
+    }
   }
 
   @override
