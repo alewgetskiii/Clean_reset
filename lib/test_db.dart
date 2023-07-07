@@ -8,31 +8,27 @@ import 'dart:convert';
 import 'amplifyconfiguration.dart';
 
 import 'models/Mission.dart';
+import 'slideMenu.dart';
 
 class MissionListPage extends StatefulWidget {
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MissionListPage> {
-  List<Mission> missionsList = [];
 
   @override
   void initState() {
+    fetchData();
     super.initState();
-    print('go');
   }
 
-
-
-
   Future<void> fetchData() async {
-
     try {
       final operation = Amplify.API.query(
         request: GraphQLRequest<String>(
-          document: 'query MyQuery {listMissions {nextToken,startedAt,items {id,nb_point,nom,description}}}',
+          document:
+              'query MyQuery {listMissions {nextToken,startedAt,items {id,nb_point,nom,description}}}',
         ),
       );
 
@@ -45,13 +41,12 @@ class _MyAppState extends State<MissionListPage> {
         // Extraction des noms de mission
         final jsonData = json.decode(response.data!); //decodage du json
         final List<dynamic> missions = jsonData['listMissions']['items']; //extraction uniquement de la liste des missions
-        String jsonString = json.encode(missions);//rencodage du json
+        String jsonString = json.encode(missions); //rencodage du json
 
-        missionsList = createMissionListFromJson(jsonString); //transformation du json en une liste d'objet de classe Mission
-        print('nom de la premiere mission : ${missionsList[0].nom} (dans la focntion)');
+        missionsList = createMissionListFromJson(
+            jsonString); //transformation du json en une liste d'objet de classe Mission
 
-        if(missionsList.isNotEmpty){
-          print('table ok');
+        if (missionsList.isNotEmpty) {
         }
       }
     } catch (e) {
@@ -73,18 +68,19 @@ class _MyAppState extends State<MissionListPage> {
   void navigateToMissionPage(Mission currentMission) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MissionPage(currentMission: currentMission,)),
+      MaterialPageRoute(
+          builder: (context) => MissionPage(
+                currentMission: currentMission,
+              )),
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
-  fetchData();
-  print('nom de la premiere mission : ${missionsList[0]!.nom} ");
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-        ),
+        appBar: AppBar(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +114,9 @@ class _MyAppState extends State<MissionListPage> {
       ),
     );
   }
+
 }
+
 
 class MissionPage extends StatelessWidget {
   final Mission currentMission;
@@ -156,16 +154,5 @@ class MissionPage extends StatelessWidget {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MissionListPage());
-
-}
-
-Future<void> amplifyConfig() async {
-  try {
-    await Amplify.addPlugins([AmplifyAPI()]);
-    await Amplify.configure(amplifyconfig);
-    print('Amplify configured');
-  } catch (e) {
-    print('An error occurred during Amplify configuration: $e');
-  }
 }
 
