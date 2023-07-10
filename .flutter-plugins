@@ -1,13 +1,13 @@
 # This is a generated file; do not edit or check into version control.
-amplify_analytics_pinpoint=/Users/gerarda/.pub-cache/hosted/pub.dev/amplify_analytics_pinpoint-1.2.0/
-amplify_auth_cognito=/Users/gerarda/.pub-cache/hosted/pub.dev/amplify_auth_cognito-1.2.0/
-amplify_db_common=/Users/gerarda/.pub-cache/hosted/pub.dev/amplify_db_common-0.3.0+1/
-amplify_secure_storage=/Users/gerarda/.pub-cache/hosted/pub.dev/amplify_secure_storage-0.4.0+1/
-connectivity_plus=/Users/gerarda/.pub-cache/hosted/pub.dev/connectivity_plus-4.0.1/
-device_info_plus=/Users/gerarda/.pub-cache/hosted/pub.dev/device_info_plus-9.0.2/
-package_info_plus=/Users/gerarda/.pub-cache/hosted/pub.dev/package_info_plus-4.0.2/
-path_provider=/Users/gerarda/.pub-cache/hosted/pub.dev/path_provider-2.0.15/
-path_provider_android=/Users/gerarda/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27/
-path_provider_foundation=/Users/gerarda/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.3/
-path_provider_linux=/Users/gerarda/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11/
-path_provider_windows=/Users/gerarda/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.7/
+amplify_analytics_pinpoint=/Users/ollguardner/.pub-cache/hosted/pub.dev/amplify_analytics_pinpoint-1.2.0/
+amplify_auth_cognito=/Users/ollguardner/.pub-cache/hosted/pub.dev/amplify_auth_cognito-1.2.0/
+amplify_db_common=/Users/ollguardner/.pub-cache/hosted/pub.dev/amplify_db_common-0.3.0+1/
+amplify_secure_storage=/Users/ollguardner/.pub-cache/hosted/pub.dev/amplify_secure_storage-0.4.0+1/
+connectivity_plus=/Users/ollguardner/.pub-cache/hosted/pub.dev/connectivity_plus-4.0.1/
+device_info_plus=/Users/ollguardner/.pub-cache/hosted/pub.dev/device_info_plus-9.0.2/
+package_info_plus=/Users/ollguardner/.pub-cache/hosted/pub.dev/package_info_plus-4.0.2/
+path_provider=/Users/ollguardner/.pub-cache/hosted/pub.dev/path_provider-2.0.15/
+path_provider_android=/Users/ollguardner/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27/
+path_provider_foundation=/Users/ollguardner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.3/
+path_provider_linux=/Users/ollguardner/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11/
+path_provider_windows=/Users/ollguardner/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.7/

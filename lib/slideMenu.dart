@@ -19,7 +19,11 @@ List<Mission> missionsList = [];
 class _SlideMenuPageState extends State<SlideMenuPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final List<List<String>> _menuItems = [['TinderGift','assets/welcome0.png'], ['Carte','assets/welcome0.png'], ['Missions','assets/welcome0.png']];
+  final List<List<String>> _menuItems = [
+    ['TinderGift', 'assets/welcome0.png'],
+    ['Carte', 'assets/welcome0.png'],
+    ['Missions', 'assets/welcome0.png']
+  ];
 
   @override
   void initState() {
@@ -76,10 +80,13 @@ class _SlideMenuPageState extends State<SlideMenuPage>
                         onPressed: () {
                           if (item[0] == 'TinderGift') {
                             // Rediriger vers la page correspondante au bouton Menu 1
-                              navigateToTinderPage();
-                          } else if (item[0] == 'Carte') {navigateToAnotherPage();
-                          } else if (item[0] == 'Missions') {navigateToAnotherPage();
-                          }},
+                            navigateToTinderPage();
+                          } else if (item[0] == 'Carte') {
+                            navigateToAnotherPage();
+                          } else if (item[0] == 'Missions') {
+                            navigateToAnotherPage();
+                          }
+                        },
                         child: Text(item[0]),
                       ),
                     ],
@@ -96,7 +103,8 @@ class _SlideMenuPageState extends State<SlideMenuPage>
         backgroundColor: Colors.red, // Couleur de fond du bouton
         foregroundColor: Colors.white, // Couleur de l'icône
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat, // Position du bouton
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.startFloat, // Position du bouton
     );
   }
 }
@@ -106,7 +114,21 @@ Future<void> fetchData() async {
     final operation = Amplify.API.query(
       request: GraphQLRequest<String>(
         document:
-        'query MyQuery {listMissions {nextToken,startedAt,items {id,nb_point,nom,description}}}',
+            '''
+            query MyQuery {
+  listMissions {
+    nextToken
+    items {
+      id
+      nom
+      point
+      description
+    }
+  }
+}
+
+
+            ''',
       ),
     );
 
@@ -117,8 +139,8 @@ Future<void> fetchData() async {
     } else {
       // Extraction des noms de mission
       final jsonData = json.decode(response.data!); //decodage du json
-      final List<dynamic> missions =
-      jsonData['listMissions']['items']; //extraction uniquement de la liste des missions
+      final List<dynamic> missions = jsonData['listMissions']
+          ['items']; //extraction uniquement de la liste des missions
       String jsonString = json.encode(missions); //rencodage du json
 
       missionsList = createMissionListFromJson(

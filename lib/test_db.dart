@@ -16,7 +16,6 @@ class MissionListPage extends StatefulWidget {
 }
 
 class _MyAppState extends State<MissionListPage> {
-
   @override
   void initState() {
     fetchData();
@@ -27,8 +26,20 @@ class _MyAppState extends State<MissionListPage> {
     try {
       final operation = Amplify.API.query(
         request: GraphQLRequest<String>(
-          document:
-              'query MyQuery {listMissions {nextToken,startedAt,items {id,nb_point,nom,description}}}',
+          document: '''query MyQuery {
+  listMissions {
+    nextToken
+    items {
+      nom
+      point
+      description
+      id
+    }
+  }
+}
+
+
+              ''',
         ),
       );
 
@@ -37,17 +48,16 @@ class _MyAppState extends State<MissionListPage> {
       if (response.errors.isNotEmpty) {
         print('GraphQL Errors: ${response.errors}');
       } else {
-
         // Extraction des noms de mission
         final jsonData = json.decode(response.data!); //decodage du json
-        final List<dynamic> missions = jsonData['listMissions']['items']; //extraction uniquement de la liste des missions
+        final List<dynamic> missions = jsonData['listMissions']
+            ['items']; //extraction uniquement de la liste des missions
         String jsonString = json.encode(missions); //rencodage du json
 
         missionsList = createMissionListFromJson(
             jsonString); //transformation du json en une liste d'objet de classe Mission
 
-        if (missionsList.isNotEmpty) {
-        }
+        if (missionsList.isNotEmpty) {}
       }
     } catch (e) {
       print('An error occurred during the GraphQL query: $e');
@@ -75,7 +85,6 @@ class _MyAppState extends State<MissionListPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -85,9 +94,9 @@ class _MyAppState extends State<MissionListPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Text("mes mission"),
-              SizedBox(height: 10),
+              const SizedBox(height: 20),
+              const Text("mes mission"),
+              const SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
                   itemCount: missionsList.length,
@@ -96,10 +105,10 @@ class _MyAppState extends State<MissionListPage> {
 
                     return Card(
                       child: ListTile(
-                        leading: FlutterLogo(size: 56.0),
+                        leading: const FlutterLogo(size: 56.0),
                         title: Text(currentMission.nom!),
                         subtitle: Text(currentMission.description!),
-                        trailing: Text(currentMission.nb_point.toString()!),
+                        trailing: Text(currentMission.point.toString()!),
                         onTap: () {
                           navigateToMissionPage(currentMission);
                         },
@@ -114,9 +123,7 @@ class _MyAppState extends State<MissionListPage> {
       ),
     );
   }
-
 }
-
 
 class MissionPage extends StatelessWidget {
   final Mission currentMission;
@@ -127,7 +134,7 @@ class MissionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ma mission'),
+        title: const Text('Ma mission'),
       ),
       body: Center(
         child: Column(
@@ -135,14 +142,14 @@ class MissionPage extends StatelessWidget {
           children: [
             Text(
               currentMission.nom!,
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Action du bouton à implémenter
               },
-              child: Text('Mon bouton'),
+              child: const Text('Mon bouton'),
             ),
           ],
         ),
@@ -155,4 +162,3 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MissionListPage());
 }
-
